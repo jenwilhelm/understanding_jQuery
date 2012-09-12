@@ -1,0 +1,8 @@
+/* 
+Title:		Screen styles and ie/win patches
+*/
+
+/* import stylesheets and hide from ie/mac \*/
+@import url("reset.css");
+@import url("master.css");
+/* end import/hide */

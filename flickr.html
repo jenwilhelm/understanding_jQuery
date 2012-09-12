@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  	<head>
+		<meta charset="utf-8">
+		<title>Flickr example, Understanding jQuery</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/flickr.css">
+		<meta name="description" content="Understanding jQuery, Flickr example"> 
+		<meta name="author" content="Jen Wilhelm">
+		<link rel="shortcut icon" href="images/favicon.ico">
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/flickr.js"></script>
+		<script type="text/html" id="flickr_search_results">
+			<div class="result">
+				<a href="<%=link%>" target="_blank"><img src="<%=media%>" alt="<%=title%>"></a>
+				<%=title%><br>
+				<em>by <%=author%></em>
+			</div>
+		</script>
+  	</head>
+  	<body>
+
+		<header>
+			<h1>Flickr Searchr</h1>
+		</header>    
+
+		<div class="wrap">
+			<section id="photoSearch">
+				<h2>Search Flickr photos</h2>
+				<form name="photoSearchForm" id="photoSearchForm">
+					<div class="error hidden"></div>
+					<fieldset>
+						<label for="term">Search term</label>
+						<input type="text" name="term">
+						<button type="submit">go</button>
+					</fieldset>
+				</form>
+			</section>
+
+			<section id="searchResults" class="hidden">
+				<h2>Search results for: <span class="searchTerm"></span></h2>
+				<div class="photos">
+
+				</div>
+			</section>
+
+		</div>
+
+  	</body>
+</html>

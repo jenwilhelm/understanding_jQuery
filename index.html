@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  	<head>
+		<meta charset="utf-8">
+		<title>Understanding jQuery</title>
+
+		<link rel="stylesheet" href="css/screen.css">
+		<meta name="description" content="Understanding jQuery"> 
+		<meta name="author" content="Jen Wilhelm">
+		<link rel="shortcut icon" href="images/favicon.ico">
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/global.js"></script>
+  	</head>
+  	<body>
+
+	    <a href="https://github.com/jenwilhelm/understanding_jQuery" target="_blank">
+	    	<div id="github"></div>
+	    </a>
+    
+    	<div id="container">
+    
+			<div id="sidebar">
+				<div id="toc">
+					<div id="banner">table of contents</div>
+					<nav>
+						<ul>
+							<li><a name="#l1-1">What Is jQuery?</a></li>
+							<li><a name="#l1-2">Installing jQuery</a></li>
+							<li><a name="#l1-3">DOM Manipulation</a></li>
+							<li><a name="#l1-4">Transitions, Animations &amp; Special Effects</a></li>
+							<li><a name="#l1-5">Using Ajax</a></li>
+							<li><a name="#l1-6">Templating</a></li>
+							<li><a name="#l1-7">Plug-ins</a></li>
+							<li><a name="#l1-8">Learn More</a></li>
+						</ul>
+					</nav>
+					<a href="flickr.html" class="btn">Flickr example &raquo;</a>
+				</div>
+			</div>
+      
+      		<div id="content">
+      			<!-- TITLE -->
+				<header id="lesson1" class="lessonTitle visible">
+				  	<hgroup>
+	        	  		<h1>Understanding jQuery</h1>
+					</hgroup>
+        		</header>
+
+				<!-- HOMEPAGE //////////////////////////////////////////////////////////////////// -->
+				<section id="l0-0" class="hidden">
+					<h3>Disclaimers</h3>
+					<p>This presentation is geared towards those not already familiar with jQuery.</p>
+					<p>I'm also assuming a basic knowledge of JavaScript, HTML, and CSS.</p>
+					<p>I'm not an expert in jQuery, but I do use it on a daily basis. :)</p>
+
+					<h3>About This Presentation</h3>
+					<p>This site is written entirely in jQuery, HTML5 &amp; CSS3. It is available <a href="https://github.com/jenwilhelm/understanding_jQuery" target="_blank">on github</a> if you'd like to see the source.</p>
+					<p>To page through the presentation, you can use the navigation on the left or use the left/right arrow keys.</p>	
+
+					<h3>Questions?</h3>
+					<p>Please ask. I'll do my best. :)</p>
+				</section>
+				
+				<!-- LESSON 1 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-1" class="hidden">
+					<h3>What Is jQuery &amp; Why Use It?</h3>
+					<ul>
+						<li>A JavaScript library</li>
+						<li>jQuery simplifies:
+							<ul>
+								<li>document traversing</li>
+								<li>event handling</li>
+								<li>animations</li>
+								<li>ajax interactions</li>
+							</ul>
+						</li>
+						<li>Helps ensure your JavaScript works cross-browser</li>
+						<li>Less code needs to be written</li>
+					</ul>
+
+					<p>Basically, it makes writing JavaScript easier and less tedious.</p>
+				</section>
+
+				<!-- LESSON 2 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-2" class="hidden">
+					<h3>Installing jQuery</h3>
+					<p>There are two ways to get jQuery working on your site.</p>
+
+					<h4>Using Google's hosted version</h4>
+					<p>Just add this line of code inside the &lt;head> tag:</p>
+					<code>
+						&lt;script type="text/javascript"<br>
+						src="https://ajax.googleapis.com/ajax/libs/jquery/<br>
+						1.8.1/jquery.min.js"></script>
+					</code>
+					<p><strong>Pros:</strong> There is a very high chance that users will already have the file cached on their computer which speeds up load time and makes one less request.</p>
+					<p><strong>Cons:</strong> If Google has downtime, jQuery won't work locally OR on your site (you should be using progressive enhancement anyhow so this shouldn't matter much!).</p>
+
+					<h4>Hosting your own version</h4>
+					<p>You can download the latest version of jQuery from the <a href="http://jquery.com/download/" target="_blank">jQuery website</a>.</p>
+					<p>Save the file somewhere in your site's directory (/js or /javascript is common). Then just link to the file in the &lt;head> tag, like so:
+					<code>
+						&lt;script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+					</code>	
+
+					<h4>Test that jQuery is working</h4>
+					<p>Open up your browsers developer console (cmd-alt-i in Chrome on Mac).</p>
+					<p>Type 'typeof jQuery'. If you see the following, jQuery is installed:</p>
+					<code>
+						"function"
+					</code>
+		        </section>
+
+		        <!-- LESSON 3 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-3" class="hidden">
+					<h3>DOM Manipulation</h3>
+					<p>jQuery can be used to take existing DOM elements and manipulate them. But before we can do that, we need to know how to select those DOM elements.</p>
+
+					<h4>Selectors</h4>
+					<p>There are lots of possible ways to select DOM elements. Much like CSS, we can use ids &amp; classes, as well as the HTML elements themselves.</p>
+
+					<p>jQuery returns an array of elements for each selection.</p>
+
+					<code>
+						// Select an id:<br>
+						// &lt;div id="photos">&lt;/div><br>
+						var photoDiv = $('#photos');<br><br>
+
+						// Select a class:<br>
+						// &lt;span class="red">&lt;/span><br>
+						var redSpans = $('.red');<br><br>
+
+						// Select an id which also has a class:<br>
+						// &lt;div id="photos" class="red">&lt;/div><br>
+						var photoRed = $('#photos.red');<br><br>
+
+						// Select an id with a child class:<br>
+						// &lt;div id="photos">&lt;span class="red">&lt;/span>&lt;/div><br>
+						// notice the space here compared to the previous one<br>
+						var photoReds = $('#photos .red');<br><br>
+
+						// Select all images<br>
+						var images = $('img');<br><br>
+
+						// Select a form element:<br>
+						// &lt;input type="text" name="phone"><br>
+						var phoneNumber = $('input[name=phone]');<br><br>
+					</code>
+
+					<h4>Manipulators</h4>
+					<p>Once you have these DOM elements, you can then do fun things with them.</p>
+					<p>For a complete list of manipulations, check out the <a href="http://api.jquery.com/category/manipulation/" target="_blank">jQuery documentation</a>.</p>
+					<p>Let's say we have the following HTML:</p>
+					<code>
+						&lt;div id="links"><br>
+						&nbsp;&nbsp;&lt;a href="www.flickr.com">Flickr&lt;/a><br>
+						&nbsp;&nbsp;&lt;a href="www.picasa.com">Picasa&lt;/a><br>
+						&nbsp;&nbsp;&lt;a href="www.photobucket.com">PhotoBucket&lt;/a><br>
+						&lt;/div>
+					</code>
+					<p>We can now do various things to the DOM elements:</p>
+					<code>
+						// Get a list of URLs<br>
+						$('#links a').attr('href');<br><br>
+
+						// Change the first URL and the text inside it<br>
+						$($('#links a')[0]).attr('href', 'www.apple.com').text('Apple');<br><br>
+
+						// Show &amp; hide elements<br>
+						$('#links').hide();<br>
+						$('#links').show();<br><br>
+
+						// Remove content inside an element<br>
+						$('#links').empty();<br><br>
+
+						// Create and append new elements<br>
+						$('#links').append('<a href="www.amazon.com">Amazon</a>');
+					</code>
+
+					<h4>Styling</h4>
+					<p>We can also change the CSS styles using jQuery.</p>
+					<code>
+						// Add a class<br>
+						$('#links').addClass('hidden');<br><br>
+
+						// Remove a class<br>
+						$('#links').removeClass('hidden');<br><br>
+
+						// Set CSS properties<br>
+						$('#links').css('background-color', '#eee');<br>
+						$('#links').css({<br>
+						&nbsp;&nbsp;'background-color' : '#eee',<br>
+						&nbsp;&nbsp;'padding-left' : '15px'<br>
+						});
+					</code>
+		        </section>
+
+		        <!-- LESSON 4 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-4" class="hidden">
+					<h3>Transitions, Animations &amp; Special Effects</h3>
+					<p>jQuery has lots of built-in functions for creating cool effects.</p>
+					<code>
+						// Fade an element in<br>
+						$('#links').fadeIn();<br>
+						$('#links').fadeIn(500);<br>
+						$('#links').fadeIn(500, function() {<br>
+						&nbsp;&nbsp;// Run this code after fadeOut is complete<br>
+						});<br><br>
+
+						// Fade an element out<br>
+						$('#links').fadeOut();<br><br>
+
+						// Slide elements (element must be hidden initally)<br>
+						$('#links').slideDown();<br>
+						$('#links').slideUp();<br><br>
+
+						// Animate using CSS properties<br>
+						$('#links').animate({<br>
+						&nbsp;&nbsp;'width' : '400px',<br>
+						&nbsp;&nbsp;'left' : '-50px'<br>
+						}, 500, function() {...});
+					</code>
+		        </section>
+
+		        <!-- LESSON 5 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-5" class="hidden">
+					<h3>Using Ajax</h3>
+					<p>You can use jQuery to make client-side requests to server-side APIs and update the DOM accordingly.</p>
+					<code>
+						// Use jQuery's built-in ajax() function<br>
+						$.ajax({<br>
+						&nbsp;&nbsp;url : 'http://api.flickr.com/',<br>
+						&nbsp;&nbsp;type : 'GET',<br>
+						&nbsp;&nbsp;dataType : 'json',<br>
+						&nbsp;&nbsp;timeout : 10000,<br>
+						&nbsp;&nbsp;success : function(response) {...},<br>
+						&nbsp;&nbsp;error : function(err) {...}<br>
+						});
+					</code>
+					<p>Check out the <a href="http://api.jquery.com/jQuery.ajax/" target="_blank">.ajax() documentation</a> for more information.</p>
+		        </section>
+
+		        <!-- LESSON 6 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-6" class="active">
+					<h3>Templating</h3>
+					<p>There are lots of templating engines that can be used alongside jQuery to make rendering HTML easier.</p>
+
+
+					<h4>Other templating engines</h4>
+					<ul>
+						<li><a href="http://ejohn.org/blog/javascript-micro-templating" target="_blank">John Resig's Micro-templating</a> (used in Flickr example)</li>
+						<li><a href="https://github.com/janl/mustache.js" target="_blank">MustacheJS</a> (logicless)</li>
+						<li><a href="http://handlebarsjs.com" target="_blank">HandlebarsJS</a></li>
+						<li><a href="http://beebole.com/pure" target="_blank">PURE</a></li>
+					</ul>
+		        </section>
+
+		        <!-- LESSON 7 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-7" class="hidden">
+					<h3>Using Plug-ins</h3>
+					<p>Plug-ins for jQuery are easy to use and write. All you're doing is extending the jQuery namespace.</p>
+
+					<h4>Creating a plug-in</h4>
+					<p>To start, simply extend the jQuery namespace with your function name:</p>
+					<code>
+						// Serialize a form object to a JSON object
+						$.fn.serializeObject = function() {<br>
+						&nbsp;&nbsp;// Your function will go here<br>
+						}
+					</code>
+
+					<p>Then, write your function:</p>
+					<code>
+						$.fn.serializeObject = function() {<br>
+						&nbsp;&nbsp;var o = {};<br>
+						&nbsp;&nbsp;var a = this.serializeArray();<br>
+						&nbsp;&nbsp;$.each(a, function() {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;if (o[this.name] != null) {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!o[this.name].push) {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o[this.name] = [o[this.name]];<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o[this.name].push(this.value || '');<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o[this.name] = this.value || '';<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						&nbsp;&nbsp;});<br>
+						&nbsp;&nbsp;return o;<br>
+						};
+					</code>
+
+					<p>When you're done, call your function:</p>
+					<code>
+						var formData = $('#signupForm').serializeObject();
+					</code>
+
+					<h4>Using existing plug-ins</h4>
+					<p>jQuery also has an excellent <a href="http://plugins.jquery.com/" target="_blank">archive of plug-ins</a> available to install on your site.</p>
+		        </section>
+
+		        <!-- LESSON 8 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-8" class="hidden">
+					<h3>Learn More</h3>
+		        </section>
+
+				
+<!-- 				<pre>
+					<code>
+						&lt;link rel="stylesheet" href="css/screen.css"><br>
+						&lt;script src="js/yay.js">&lt;/script>
+					</code>
+					<span></span>
+				</pre> -->
+				
+        
+      </div> <!-- end content -->
+    
+    </div> <!-- end container -->
+
+  </body>
+</html>
