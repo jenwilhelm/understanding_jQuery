@@ -28,11 +28,12 @@
 							<li><a name="#l1-1">What Is jQuery?</a></li>
 							<li><a name="#l1-2">Installing jQuery</a></li>
 							<li><a name="#l1-3">DOM Manipulation</a></li>
-							<li><a name="#l1-4">Transitions, Animations &amp; Special Effects</a></li>
-							<li><a name="#l1-5">Using Ajax</a></li>
-							<li><a name="#l1-6">Templating</a></li>
-							<li><a name="#l1-7">Plug-ins</a></li>
-							<li><a name="#l1-8">Learn More</a></li>
+							<li><a name="#l1-4">Events</a></li>
+							<li><a name="#l1-5">Transitions, Animations &amp; Special Effects</a></li>
+							<li><a name="#l1-6">Using Ajax</a></li>
+							<li><a name="#l1-7">Templating</a></li>
+							<li><a name="#l1-8">Plug-ins</a></li>
+							<li><a name="#l1-9">Learn More</a></li>
 						</ul>
 					</nav>
 					<a href="flickr.html" class="btn">Flickr example &raquo;</a>
@@ -48,7 +49,7 @@
         		</header>
 
 				<!-- HOMEPAGE //////////////////////////////////////////////////////////////////// -->
-				<section id="l0-0" class="hidden">
+				<section id="l0-0" class="active">
 					<h3>Disclaimers</h3>
 					<p>This presentation is geared towards those not already familiar with jQuery.</p>
 					<p>I'm also assuming a basic knowledge of JavaScript, HTML, and CSS.</p>
@@ -198,6 +199,40 @@
 
 		        <!-- LESSON 4 //////////////////////////////////////////////////////////////////// -->
 				<section id="l1-4" class="hidden">
+					<h3>Events</h3>
+					<p>Of course, we probably want to tie some of these manipulations to some events.</p>
+					<p>jQuery has many of the same events that exist in native JavaScript.</p>
+					<code>
+						// document has finished loading<br>
+						// (window.onload or document.onload)<br>
+						$('document').ready();<br><br>
+
+						// mouse events<br>
+						$('#links').mousedown();<br>
+						$('#links').mouseup();<br>
+						$('#links').mouseenter();<br>
+						$('#links').mouseleave();<br>
+						$('#links').mouseover();<br>
+						$('#links').mousemove();<br><br>
+
+						// keyboard events<br>
+						$('#links').keyup();<br>
+						$('#links').keydown();<br>
+						$('#links').keypress();<br>
+						$('#links').scroll();<br><br>
+
+						// Other<br>
+						$('#links').click();<br>
+						$('#links').focus();<br>
+						$('#links').submit();<br>
+						$('#links').load();
+					</code>
+					<p>Note: .load() is the same as .ready() except that it also waits for media elements to load (images, video, scripts, etc).</p>
+					<p>Checkout the <a href="http://api.jquery.com/category/events/" target="_blank">jQuery documentation</a> for a full list of events.</p>
+		        </section>
+
+		        <!-- LESSON 5 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-5" class="hidden">
 					<h3>Transitions, Animations &amp; Special Effects</h3>
 					<p>jQuery has lots of built-in functions for creating cool effects.</p>
 					<code>
@@ -221,10 +256,11 @@
 						&nbsp;&nbsp;'left' : '-50px'<br>
 						}, 500, function() {...});
 					</code>
+					<p>Let's take a look at the <a href="http://api.jquery.com/category/events/" target="_blank">jQuery documentation</a> to see some of these in action.</p>
 		        </section>
 
-		        <!-- LESSON 5 //////////////////////////////////////////////////////////////////// -->
-				<section id="l1-5" class="hidden">
+		        <!-- LESSON 6 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-6" class="hidden">
 					<h3>Using Ajax</h3>
 					<p>You can use jQuery to make client-side requests to server-side APIs and update the DOM accordingly.</p>
 					<code>
@@ -238,15 +274,21 @@
 						&nbsp;&nbsp;error : function(err) {...}<br>
 						});
 					</code>
+					<p>Note: to attach events that are added to the DOM after page load, use .on().</p>
+					<code>
+						$('document').on('click', '#links a', function(e) {<br>
+						&nbsp;&nbsp;// Do something<br>
+						});
+					</code>
 					<p>Check out the <a href="http://api.jquery.com/jQuery.ajax/" target="_blank">.ajax() documentation</a> for more information.</p>
 		        </section>
 
-		        <!-- LESSON 6 //////////////////////////////////////////////////////////////////// -->
-				<section id="l1-6" class="active">
+		        <!-- LESSON 7 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-7" class="hidden">
 					<h3>Templating</h3>
+					<p>Templating allows you to keep your HTML separate from your JavaScript by passing JSON through the template to give you rendered HTML that you can append to the DOM.</p>
 					<p>There are lots of templating engines that can be used alongside jQuery to make rendering HTML easier.</p>
-
-
+					<p>We will see an example of templating in our Flickr example.</p>
 					<h4>Other templating engines</h4>
 					<ul>
 						<li><a href="http://ejohn.org/blog/javascript-micro-templating" target="_blank">John Resig's Micro-templating</a> (used in Flickr example)</li>
@@ -256,8 +298,8 @@
 					</ul>
 		        </section>
 
-		        <!-- LESSON 7 //////////////////////////////////////////////////////////////////// -->
-				<section id="l1-7" class="hidden">
+		        <!-- LESSON 8 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-8" class="hidden">
 					<h3>Using Plug-ins</h3>
 					<p>Plug-ins for jQuery are easy to use and write. All you're doing is extending the jQuery namespace.</p>
 
@@ -298,20 +340,26 @@
 					<p>jQuery also has an excellent <a href="http://plugins.jquery.com/" target="_blank">archive of plug-ins</a> available to install on your site.</p>
 		        </section>
 
-		        <!-- LESSON 8 //////////////////////////////////////////////////////////////////// -->
-				<section id="l1-8" class="hidden">
+		        <!-- LESSON 9 //////////////////////////////////////////////////////////////////// -->
+				<section id="l1-9" class="hidden books">
 					<h3>Learn More</h3>
-		        </section>
+					<p>Obviously the best place to learn about jQuery is by reading the documentation. However, here are some additional links that may be helpful:</p>
 
-				
-<!-- 				<pre>
-					<code>
-						&lt;link rel="stylesheet" href="css/screen.css"><br>
-						&lt;script src="js/yay.js">&lt;/script>
-					</code>
-					<span></span>
-				</pre> -->
-				
+					<h4>Websites</h4>
+					<ul>
+						<li><a href="http://docs.jquery.com/Main_Page" target="_blank">jQuery documentation</a></li>
+						<li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+						<li><a href="http://plugins.jquery.com/" target="_blank">jQuery Plug-in Archive</a></li>
+						<li><a href="http://www.codecademy.com/tracks/jquery" target="_blank">Codecademy jQuery tutorials</a></li>
+					</ul>
+
+					<h4>Books</h4>
+					<a href="http://www.amazon.com/jQuery-Novice-Ninja-Earle-Castledine/dp/0987153013/ref=sr_1_7?ie=UTF8&qid=1347564069&sr=8-7&keywords=jquery" target="_blank"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRPONyxQwhqivTJ2LvF7uEqBUroxx4We2LgRa89-8RsSRmzbqc5" alt="jQuery: Novice to Ninja"></a>
+
+					<a href="http://www.amazon.com/jQuery-Action-Second-Edition-Bibeault/dp/1935182323/ref=sr_1_4?ie=UTF8&qid=1347564069&sr=8-4&keywords=jquery" target="_blank"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSXTMDYluPS_aynwXd32FIv84Yw0vrah7RMKuAgndZxneDE02w0eA" alt="jQuery in Action"></a>
+
+					<a href="http://www.amazon.com/Learning-jQuery-Edition-Jonathan-Chaffer/dp/1849516545/ref=sr_1_5?ie=UTF8&qid=1347564069&sr=8-5&keywords=jquery" target="_blank"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTQ-QjAXq-wg72ATjNu4_aP5JCcrdIYibBcJNS1d5HjCS746ZHw" alt="Learning jQuery"></a>
+		        </section>
         
       </div> <!-- end content -->
     
